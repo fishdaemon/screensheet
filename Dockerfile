@@ -53,7 +53,8 @@ WORKDIR /workspace
 RUN curl -sL "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" > "Miniconda3.sh"
 RUN bash Miniconda3.sh -b
 RUN sudo apt-get -y remove pipenv \
-   &&  pip install pipenv
+   &&  pip install pipenv \
+RUN sudo apt-get -y install aria2 nano
 RUN echo "export PIPENV_VENV_IN_PROJECT=1" >> /home/ubuntu/.bashrc
 #CMD ["/bin/sh" "-c" "/usr/bin/sudo /usr/sbin/sshd -D -o ListenAddress=0.0.0.0 & jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' --ip=0.0.0.0 --port=8888 --NotebookApp.port_retries=0 --NotebookApp.disable_check_xsrf=True --no-browser"]
 COPY ./start.sh /start.sh
